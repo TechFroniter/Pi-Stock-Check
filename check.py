@@ -3,7 +3,5 @@ sys.dont_write_bytecode = True
 import pi_instock
 
 
-t = pi_instock.scrape(False)
-t.check()
-
-
+pi_check = pi_instock.scrape(False)
+pi_check.check()

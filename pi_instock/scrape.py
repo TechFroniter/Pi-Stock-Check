@@ -56,8 +56,7 @@ class scrape:
             stock = parser.find(attrs={"itemprop": "availability"})
 
             if stock.text != "Out of stock":
-                self.found.append(f'{link}')
-
+                self.found.append(link)
 
 
     def pi_shop(self):
@@ -69,7 +68,7 @@ class scrape:
             stock = parser.find("input", {"id": "form-action-addToCart"}).get_attribute_list("value")[0]
 
             if stock != "Out of stock":
-                self.found.append(f'{link}')
+                self.found.append(link)
     
 
     def vilros(self):
@@ -80,10 +79,12 @@ class scrape:
             parser = self.grab_page(link)
             
             try:
-                parser.find("button", {"name": "add"}).findChild("span").text
+                stock = parser.find("button", {"name": "add"}).findChild("span").text
             except Exception:
-               self.found.append(f'{link}')
+               pass
 
+            if "Sold Out" not in stock:
+                self.found.append(link)
             
     
    
