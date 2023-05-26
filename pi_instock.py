@@ -1,18 +1,16 @@
 from bs4 import BeautifulSoup
 import requests, json, threading
-from . notification import send_message
+
 
 class scrape:
-    def __init__(self, message: bool):
-
-        self.message = message
+    def __init__(self):
 
         self.links = json.load(open("urls.json", "r"))
         
         self.found = []
 
 
-    def check(self):
+    def check(self) -> list:
 
         func_map = [
             self.pi_shop,
@@ -31,13 +29,8 @@ class scrape:
 
         for thread in threads:
             thread.join()
-
-
-        if self.message == True:
-            send_message(self.found)
             
-        else:
-            print(self.found)
+        print(self.found)
 
         
     def grab_page(self, url):
