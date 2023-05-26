@@ -11,8 +11,14 @@ class scrape:
 
 
     def check(self) -> list:
+        
+        '''
+            Main calling function starts a thread for each website to speed up the process
+        '''
+        
+        print("Checking websites")
 
-        func_map = [
+        func_map = [ 
             self.pi_shop,
             self.adafruit,
             self.vilros
@@ -30,7 +36,7 @@ class scrape:
         for thread in threads:
             thread.join()
             
-        print(self.found)
+        return self.found
 
         
     def grab_page(self, url):
@@ -40,9 +46,12 @@ class scrape:
 
     #=================================[Websites]=======================================#
 
+    '''
+        every funciton below is for scaping a website they are all set up to do so
+    '''
+
     def adafruit(self):
 
-        print("Checking adafruit")
         for link in self.links["adafruit"]:
 
             parser = self.grab_page(link)
@@ -53,8 +62,7 @@ class scrape:
 
 
     def pi_shop(self):
-
-        print("Checking Pi Shop")
+        
         for link in self.links["pi_shop"]:
 
             parser = self.grab_page(link)
@@ -66,7 +74,6 @@ class scrape:
 
     def vilros(self):
 
-        print("Checking vilros")
         for link in self.links["vilros"]:
 
             parser = self.grab_page(link)

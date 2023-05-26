@@ -4,4 +4,6 @@ import pi_instock
 
 
 pi_check = pi_instock.scrape()
-pi_check.check()
+
+pis = pi_check.check()
+print(pis)
