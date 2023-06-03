@@ -15,8 +15,6 @@ class scrape:
         '''
             Main calling function starts a thread for each website to speed up the process
         '''
-        
-        print("Checking websites")
 
         func_map = [ 
             self.pi_shop,
